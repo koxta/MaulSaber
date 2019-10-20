@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
         {
             _instance = this;
         }
+        Time.timeScale = 1;
     }
     #endregion
 
