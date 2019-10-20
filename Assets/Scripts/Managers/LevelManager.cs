@@ -57,14 +57,12 @@ public class LevelManager : MonoBehaviour
     {
         if (!PlayerPrefs.HasKey("lastSavedLevel"))
         {
-            PlayerPrefs.SetInt("lastSavedLevel",1);
+            PlayerPrefs.SetInt("lastSavedLevel", 1);
             return 1;
         }
         else
         {
-            Debug.Log("last level - " + PlayerPrefs.GetInt("lastSavedLevel"));
             return PlayerPrefs.GetInt("lastSavedLevel");
-
         }
     }
 
@@ -75,23 +73,32 @@ public class LevelManager : MonoBehaviour
             new Level
             {
                 LevelId = 1,
-                EnemyCount = 15,
+                EnemyCount = 10,
                 InstantiateTimeFrom = 0.8f,
                 InstantiateTimeTo = 1.3f
             },
             new Level
             {
                 LevelId = 2,
-                EnemyCount = 20,
+                EnemyCount = 15,
                 InstantiateTimeFrom = 0.8f,
                 InstantiateTimeTo = 1.3f
             },
             new Level
             {
                 LevelId = 3,
-                EnemyCount = 25,
+                EnemyCount = 20,
                 InstantiateTimeFrom = 0.7f,
                 InstantiateTimeTo = 1f
+            },
+            new Level
+            {
+                LevelId = 4,
+                EnemyCount = 25,
+                InstantiateTimeFrom = 0.7f,
+                InstantiateTimeTo = 1f,
+                // 10% chance of having life more than 1
+                probabilityOfHavingLive = 10
             }
         };
     }

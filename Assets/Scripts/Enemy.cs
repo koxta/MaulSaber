@@ -15,11 +15,17 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D rigidBody;
     private bool attract;
 
+    public UnityEngine.UI.Text liveText;
+
     private void Start()
     {
         attractedTo = GameManager.Instance.player;
         rigidBody = GetComponent<Rigidbody2D>();
         attract = true;
+        if (Lives > 1)
+        {
+            liveText.text = Lives.ToString();
+        }
     }
 
     private void FixedUpdate()
@@ -47,8 +53,10 @@ public class Enemy : MonoBehaviour
                 }
                 else
                 {
+                    liveText.text = Lives.ToString();
                     StartCoroutine(StopAttraction(UnityEngine.Random.Range(2, 3)));
                 }
+                
             }
             else
             {

@@ -79,6 +79,12 @@ public class GameManager : MonoBehaviour
             int random = Random.Range(0, enemies.Length);
 
             var enemyInstance = Instantiate(enemies[random].gameObject , null);
+            if (level.probabilityOfHavingLive>0)
+            {
+                int randomPercent = Random.Range(0, 100);
+                if(randomPercent < level.probabilityOfHavingLive)
+                enemyInstance.GetComponent<Enemy>().Lives = Random.Range(2, 3);
+            }
             enemyInstance.transform.position = randomManager.GetRandomPosition();
             activeEnemyCounter++;
 
@@ -88,6 +94,7 @@ public class GameManager : MonoBehaviour
 
     public void Restart()
     {
+        Time.timeScale = 1;
         StopAllCoroutines();
         GameScreen.levelProgress.value = 0;
         activeEnemies.ForEach(delegate (GameObject obj)
@@ -100,6 +107,7 @@ public class GameManager : MonoBehaviour
     public int killedEnemies;
     public void CheckActiveEnemies()
     {
+        Debug.Log("active enemies- " + activeEnemyCounter);
         if (activeEnemyCounter <= 0)
         {
             StartNextLevel();
